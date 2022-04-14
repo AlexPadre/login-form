@@ -36,7 +36,7 @@ function App() {
   return (
     <div className="App">
       {(user.email != "") ? (
-        <div className="welcome">
+        <div>
           <h2>Welcome, <span>{user.name}</span></h2>
           <button onClick={Logout}>Logout</button>
         </div>

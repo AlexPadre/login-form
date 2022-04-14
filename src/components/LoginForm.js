@@ -11,22 +11,22 @@ export default function LoginForm({ Login, error }) {
     return (
         <div>
             <form onSubmit={submitHandler}>
-                <div className="form-inner">
+                <div>
                     <h2>Login</h2>
-                    {(error != "") ? (<div className="error">{error}</div>) : ""}
-                    <div className="form-group">
+                    {(error != "") ? (<div>{error}</div>) : ""}
+                    <div>
                         <label htmlFor="name">Name:</label>
                         <input 
                             onChange={e => setDetails({...details, name: e.target.value})}
                             value={details.name} type="text" name="name" id="name"/>
                     </div>
-                    <div className="form-group">
+                    <div>
                         <label htmlFor="email">Email:</label>
                         <input 
                             onChange={e => setDetails({...details, email: e.target.value})}
                             value={details.email} type="email" name="email" id="email"/>
                     </div>
-                    <div className="form-group">
+                    <div>
                         <label htmlFor="password">Password:</label>
                         <input 
                             onChange={e => setDetails({...details, password: e.target.value})}
