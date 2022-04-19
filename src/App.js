@@ -1,48 +1,31 @@
 import React, { useState } from 'react';
 import LoginForm from './components/LoginForm';
+import { connect } from 'react-redux';
+import { loginAction } from './actions';
+import { logoutAction } from './actions';
 
-function App() {
-  const admin = {
-    email: "admin@admin.com",
-    password: "admin123"
-  }
-
-  const [user, setUser] = useState({name: "", email: ""});
-  const [error, setError] = useState("");
-
-  const Login = details => {
-    console.log(details);
-
-    if (details.email == admin.email && details.password == admin.password) {
-      console.log("Logged In");
-      setUser({
-        name: details.name,
-        email: details.email
-      });
-    } else {
-      console.log("Details don't match");
-      setError("Details don't match.");
-    }
-  }
-
-  const Logout = () => {
-    console.log("Logout");
-    setUser({
-      name: "",
-      email: ""
-    });
-  }
-
+function App({ login, logout, userName, userEmail, userError }) {
   return (
     <div className="App">
-      {(user.email != "") ? (
+      {(userEmail != "") ? (
         <div>
-          <h2>Welcome, <span>{user.name}</span></h2>
-          <button onClick={Logout}>Logout</button>
+          <h2>Welcome, <span>{userName}</span></h2>
+          <button onClick={logout}>Logout</button>
         </div>
-      ) : <LoginForm Login={Login} error={error} />}
+      ) : <LoginForm Login={login} error={userError} />}
     </div>
   );
 }
 
-export default App;
+const mapStateToProps = (state) => ({
+  userName: state.name,
+  userEmail: state.email,
+  userError: state.error
+})
+
+const mapDispatchToProps = {
+  login: loginAction,
+  logout: logoutAction
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
