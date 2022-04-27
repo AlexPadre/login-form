@@ -1,5 +1,6 @@
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import * as actions from './actions';
+import thunk from 'redux-thunk';
 
 const initialState = {
     name: "",
@@ -19,15 +20,16 @@ const rootReducer = (state = initialState, action) => {
         case actions.LOGOUT_USER:
             return {
                 ...state,
-                name: action.payload.name,
-                email: action.payload.email
+                name: "",
+                email: ""
             }
         case actions.ERROR_USER:
             return {
                 ...state,
                 error: action.payload.error
             }
+        default: return state;
     }
 }
 
-export default createStore(rootReducer);
+export default createStore(rootReducer, applyMiddleware(thunk));
