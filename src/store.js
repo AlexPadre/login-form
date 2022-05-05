@@ -15,7 +15,8 @@ const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 name: action.payload.name,
-                email: action.payload.email
+                email: action.payload.email,
+                error: ""
             }
         case actions.LOGOUT_USER:
             return {

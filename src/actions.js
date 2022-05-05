@@ -7,8 +7,8 @@ export const ERROR_USER = "ERROR_USER";
 
 export const loginAction = (name, email, password) => (dispatch) => {
     const identity = Login(name, email, password);
-    console.log(identity);
     if (identity) {
+        // setez in localStorage email si name-ul 
         dispatch({
             type: LOGIN_USER,
             payload: identity
@@ -22,6 +22,7 @@ export const loginAction = (name, email, password) => (dispatch) => {
 }
 
 export const logoutAction = () => (dispatch) => {
+    // stergi (localstorage removeItem - sa ma uit) name-ul si email
     dispatch({
         type: LOGOUT_USER
     });
