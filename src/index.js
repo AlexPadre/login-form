@@ -1,17 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import store from './store';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import LoginForm from './components/LoginForm';
+import Page2 from './components/Page2';
+import Homepage from './components/Homepage';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Provider store={store}>
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Homepage />} />
+        <Route path="/login" element={<LoginForm />} />
+        <Route path="/page2" element={<Page2 />} />
+      </Routes>
+    </BrowserRouter>
   </Provider>
 );
 
